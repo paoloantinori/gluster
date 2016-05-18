@@ -1,0 +1,16 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: gluster
+spec:
+  containers:
+    - name: gluster
+      image: alpine
+      command: ["ping", "127.0.0.1"]
+      volumeMounts:
+        - mountPath: "/mnt/gluster"
+          name: gluster-default-volume
+  volumes:
+    - name: gluster-default-volume
+      persistentVolumeClaim:
+        claimName: glusterfs-claim
